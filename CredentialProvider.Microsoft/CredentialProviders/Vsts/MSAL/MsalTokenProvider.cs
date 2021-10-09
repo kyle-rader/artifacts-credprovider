@@ -7,8 +7,10 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Extensions.Msal;
+
 using NuGetCredentialProvider.Logging;
 using NuGetCredentialProvider.Util;
 
@@ -151,7 +153,7 @@ namespace NuGetCredentialProvider.CredentialProviders.Vsts
                     return null;
                 }
 
-                var builder = publicClient.AcquireTokenByIntegratedWindowsAuth(new string[] { resource});
+                var builder = publicClient.AcquireTokenByIntegratedWindowsAuth(new string[] { resource });
                 builder.WithUsername(upn);
                 var result = await builder.ExecuteAsync(cancellationToken);
 
@@ -171,7 +173,7 @@ namespace NuGetCredentialProvider.CredentialProviders.Vsts
                 var helper = await GetMsalCacheHelperAsync();
                 helper?.UnregisterCache(publicClient.UserTokenCache);
             }
-       }
+        }
 
         private async Task<IPublicClientApplication> GetPCAAsync(bool useLocalHost = false)
         {
